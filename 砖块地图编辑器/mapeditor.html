@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>map editor</title>
+  </head>
+  <style media="screen">
+    canvas {
+      outline: dashed lightskyblue 1px;
+    }
+  </style>
+  <body>
+    <canvas data-action="drawMap" id="canvas" width="600" height="600"></canvas>
+    <img data-action="clickBlock" src="img/block1.png" data-lifes="1">
+    <img data-action="clickBlock" src="img/block2.png" data-lifes="2">
+    <img data-action="clickBlock" src="img/block3.png" data-lifes="3">
+    <button class="saveMap">点击存到local</button>
+    <textarea class="console" rows="8" cols="80"></textarea>
+  </body>
+  <script>
+  const e = selector => document.querySelector(selector)
+
+  const actions = {
+    clickBlock(event) {
+      let target = event.target
+      let lifes = event.target.dataset.lifes
+      window.activeBlock = [target, lifes]
+      console.log('text', window.activeBlock)
+      let t = `砖块生命： ${lifes}`
+      textLog(t)
+    }
+  }
+
+  const blockPosition = (x, y) => {
+    let blockSizeX = 67
+    let blockSizeY = 35
+    let i = Math.floor(x / blockSizeX)
+    let j = Math.floor(y / blockSizeY)
+    let x1 = i * blockSizeX
+    let y1 = j * blockSizeY
+    return [x1, y1]
+  }
+
+  const drawblock = (x, y) => {
+    let [x1, y1] = blockPosition(x, y)
+    let blockSizeX = 67
+    let blockSizeY = 35
+
+    window.context.fillRect(x1, y1, blockSizeX, blockSizeY)
+    window.context.drawImage(window.activeBlock[0], x1, y1)
+    window.map.addPoint(x1, y1)
+  }
+
+  const textLog = (t) => {
+    e('.console').value = t
+  }
+
+  const bindEvent = () => {
+    e('body').addEventListener('click', event => {
+      let action = event.target.dataset.action
+      actions[action] && actions[action](event)
+    })
+    e('.saveMap').addEventListener('click', event => {
+      window.map.level = []
+      window.map.saveMap()
+    })
+    let moving = false
+    let rect = e('canvas').getBoundingClientRect()
+    window.canvas.addEventListener('mousedown', event => {
+      if (!window.activeBlock) {
+        textLog('点击砖块图片')
+        return
+      }
+      let x = event.clientX - rect.left
+      let y = event.clientY - rect.top
+      drawblock(x, y)
+      moving = true
+    })
+    window.canvas.addEventListener('mousemove', event => {
+      if (moving) {
+        let x = event.clientX - rect.left
+        let y = event.clientY - rect.top
+        drawblock(x, y)
+      }
+    })
+    window.canvas.addEventListener('mouseup', event => {
+      moving = false
+    })
+  }
+
+  class Map {
+    constructor() {
+      this.level = []
+      this.o = {}
+    }
+    saveMap() {
+      this.parseMap()
+      let t = JSON.stringify(this.level)
+      textLog(t)
+      window.localStorage.level = t
+      console.log('level: ', this.level)
+    }
+    addPoint(x, y) {
+      let point =  `${x}&${y}`
+      this.o[point] = window.activeBlock[1]
+    }
+    parseMap() {
+      let keys = Object.keys(this.o)
+      keys.map((key) => {
+        let positon = []
+        let p = key.split('&')
+        positon.push(p[0])
+        positon.push(p[1])
+        positon.push(this.o[key])
+        this.level.push(positon)
+      })
+    }
+  }
+
+  const init = () => {
+    window.map = new Map()
+    // window.activeBlock = e('img')
+    window.canvas = e('canvas')
+    window.context = window.canvas.getContext('2d')
+    window.context.fillStyle = 'white'
+    window.context.fillRect(0, 0, 1000, 1000)
+  }
+
+  const __main = () => {
+    init()
+    bindEvent()
+  }
+
+  __main()
+
+  </script>
+</html>

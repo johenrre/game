@@ -1,0 +1,274 @@
+
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+}
+
+.item2048{
+   height: 550px;
+   width: 400px;
+
+   margin: 0 auto;
+   transform: translateY(2em);
+   border: #9E9E9E 1px solid;
+   box-shadow: 0px 0px 4px #333333;
+   border-radius: 8px;
+}
+
+/*头部css*/
+.header{
+    height: 25%;
+    position: relative;
+}
+.logo{
+    display: inline-block;
+    background: #ECC835;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100px;
+    margin-left: 28px;
+    border-radius: 10px;
+    text-align: center;
+}
+.function{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 210px;
+    height: 90px;
+    margin-left: 176px;
+}
+.logo span{
+    display: block;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+.logo-top{
+  margin-top: .5em;
+  font-size: 30px;
+}
+score div{
+  background: #b9ac9f;
+  display: inline-block;
+  width: 85px;
+  height: 60px;
+  border-radius: 10px;
+}
+
+feature{
+  height: 30%;
+  display: block;
+}
+.score-1{
+
+}
+.score-2{
+  margin-left: 18px;
+}
+.score-1 span{
+   display: block;
+   text-align: center;
+   color: #FFFFFF; font-size: 19px;
+}
+.score-1-num{
+  font-size: 27px !important;
+}
+.score-2 span{
+   display: block;
+   text-align: center;
+   color: #FFFFFF; font-size: 19px;
+}
+feature span{
+  height: 100%; text-align: center;
+  display: inline-block;
+  width: 85px;
+  border-radius: 10px;
+  background: #F5965F;
+  transform: translateY(6px);
+  color: white;
+  cursor:pointer;
+}
+.feature-2{
+  margin-left: 18px;
+}
+
+/*main的css*/
+
+.main{
+  height: 65%;
+}
+.tbody{
+  width: 90%;
+  height: 90%;
+  background: #CABEB1;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+}
+/*.line4{
+  width: 100%;
+  height: 25%;
+}*/
+
+.square{
+  /*width: 25%;*/
+  height: 100%;
+  display: inline-block;
+  float: left;
+  border: 1px #b9ac9f solid;
+  /*text-align: center;*/
+  /*font-size: 3rem;*/
+  font-weight: 600;
+  line-height: 73px;
+  user-select: none;
+  cursor: default;
+}
+.square span{
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*footer的css*/
+.footer-win{
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 1rem;
+  font-weight: bolder;
+  color: #f54444;
+}
+.footer-fail{
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 1rem;
+  font-weight: bolder;
+  color: #f54444;
+}
+.none{
+  display: none;
+}
+
+/*控制台*/
+.console-2048{
+  position: absolute;
+  top: 0px;
+  left: -100px;
+}
+
+
+/*字体的css*/
+.value2{
+    background: #D6D6D6;
+    color: #333333;
+}
+
+.value4{
+    background: #D6D6D6;
+    color: #333333;
+}
+
+.value8 {
+    background: #efaf77;
+    color: #f8f5f1;
+}
+
+.value16 {
+    background: #f39463;
+    color: #f8f5f1;
+}
+
+.value32 {
+    background: #f37a5e;
+    color: #f8f5f1;
+}
+
+.value64 {
+    background: #f45d3a;
+    color: #f8f5f0;
+}
+
+.value128 {
+    background: #edcf72;
+    color: #f8f5f0;
+    font-size: 2.8rem;
+}
+
+.value256 {
+    background: #edcb5f;
+    color: #f9f6f3;
+    font-size: 2.8rem;
+}
+
+.value512 {
+    background: #edc850;
+    color: #f8f5f1;
+    font-size: 2.8rem;
+}
+
+.value1024 {
+    background: #edc53f;
+    color: #f8f5f3;
+    font-size: 2rem;
+}
+
+.value2048 {
+    background: #3e3c31;
+    color: #f8f5f0;
+    font-size: 2rem;
+}
+
+.value4096 {
+    background: #2b2a23;
+    color: #f8f5f0;
+    font-size: 2rem;
+}
+
+.value8192 {
+    background: #21201b;
+    color: #f8f5f0;
+    font-size: 2rem;
+}
+/* 新添加的元素添加放大效果 */
+.new-one {
+    transform: scale(0);
+    animation: shine 0.5s 0.25s;
+    -webkit-animation: shine 0.5s 0.25s;
+}
+
+@keyframes shine {
+    from {
+        transform: scale(0.2);
+        -webkit-transform: scale(0.2);
+    }
+    to {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+/* 合并的元素添加缩小效果 */
+.merge-one {
+    animation: suo 0.5s;
+    -webkit-animation: suo 0.5s;
+}
+
+@keyframes suo {
+    from {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+    }
+    to {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}

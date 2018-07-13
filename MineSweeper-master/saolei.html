@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>扫雷游戏</title>
+  </head>
+  <script src='gua.js'></script>
+  <style>
+    body{
+      background: #CCCCCC
+    }
+    .square {
+      width: 23px;
+      height: 23px;
+      border: 1px solid #666;
+      float: left;
+      text-align: center;
+      background: #abe;
+      display: inline-block;
+    }
+    .square:hover{
+    	background: #cdf;
+    }
+    .container {
+    	margin: 13px auto;
+    }
+    .item{
+      width:340px;
+      height:380px;
+      background: #ddd;
+      border:3px solid #eee;
+      border-radius: 2%;
+      box-shadow: 4px 4px 8px #888;
+      margin: 55px auto;
+      margin-bottom: 24px;
+    }
+    header {
+    	width: 300px;
+    	height: 40px;
+    	font-size: 25px;
+    	font-weight: bold;
+    	text-align: center;
+    	padding: 8px 20px 2px;
+    	border-bottom: 1px solid #666;
+    }
+    .header-contain-nums {
+    	border: 1px solid #777;
+    	width: 130px;
+
+    }
+
+    #id-div-time {
+    	float: left;
+    }
+
+    #id-div-mines {
+    	float: right;
+    }
+    .buttons-lever{
+
+    }
+    .start{
+      display: block;
+      width: 120px;
+      height:30px;
+      border-radius: 7px;
+      border: none;
+      background: #34D;
+      color: white;
+      font-size: 19px;
+      box-shadow: 2px 2px 1px #888;
+      margin:10px auto;
+    }
+    .start:hover{
+        background: #0063dc;
+        box-shadow: 2px 2px 3px #777;
+    }
+    .value {
+    	visibility: hidden;
+    }
+    .show {
+        visibility: visible;
+    }
+    .white{
+      background: #f88;
+    }
+    .white:hover {
+        background: #f55;
+    }
+    .clicked {
+    	background: #eee;
+    }
+    </style>
+  <body>
+    <div class="item">
+      <header>
+        <div class="header-contain-nums" id="id-div-time">用时：<span id='id-span-time'>0</span></div>
+        <div class="header-contain-nums" id="id-div-mines">剩余：<span id="id-span-mines">15</span></div>
+      </header>
+    </div>
+    <div class="buttons-lever">
+  		<button class="start" value="6">初级游戏</button>
+  		<button class="start" value="12">中级游戏</button>
+  		<button class="start" value="20">高级游戏</button>
+  	</div>
+    <script src='area.js'></script>
+    <script src='扫雷.js'></script>
+  </body>
+</html>
