@@ -15,3 +15,6 @@
 
 [砖块编辑器](http://144.202.11.219/game/brickEditor)
 ![demo](https://github.com/johenrre/game/blob/master/brickEditor.gif)
+
+[王思聪吃面包](http://144.202.11.219/game/wangsicongGame)
+![demo](https://github.com/johenrre/game/blob/master/wangsicongGame/demo.gif)
