@@ -155,6 +155,13 @@ feature span{
   font-weight: bolder;
   color: #f54444;
 }
+.footer-tip{
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 1rem;
+  font-weight: bolder;
+  color: #f54444;
+}
 .none{
   display: none;
 }
